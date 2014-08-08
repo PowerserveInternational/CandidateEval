@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    List<string> supervisees = ViewBag.supervisees;
+}
+
+<div class="jumbotron">
+    <h1>Supervisees</h1>
+</div>
+
+<ul>
+    @{
+        foreach(string supervisee in supervisees)
+        { 
+        <li>
+            @supervisee
+        </li>
+        }
+    }
+</ul>
