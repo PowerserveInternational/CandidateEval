@@ -1,0 +1,13 @@
+﻿GUIDELINES
+- You may implement these items in any order.
+- You may use internet references and open source JavaScript and HTML.
+
+
+TASKS
+- Display a dialog box welcoming the user to the system.
+- Display supervisee's last name and status.
+- Add css styling to supervisee list.
+- Display the name of the officer assigned to each supervisee.
+- Use javascript to get the date and display it on the page.
+- Format the date in the following format: day-month-year.
+- Sort by status then last name.

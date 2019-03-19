@@ -1,19 +1,26 @@
 ﻿@{
     ViewBag.Title = "Supervisees";
-    List<string> supervisees = ViewBag.supervisees;
+    List<Supervisee> supervisees = ViewBag.Supervisees;
 }
 
 <div class="jumbotron">
     <h1>Supervisees</h1>
 </div>
 
-<ul>
-    @{
-        foreach(string supervisee in supervisees)
-        { 
-        <li>
-            @supervisee
-        </li>
+<table>
+    <thead>
+        <tr>
+            <th>Supervisee</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Supervisee supervisee in supervisees)
+            {
+                <tr>
+                    <td>@supervisee.UserName</td>
+                </tr>
+            }
         }
-    }
-</ul>
+    </tbody>
+</table>
