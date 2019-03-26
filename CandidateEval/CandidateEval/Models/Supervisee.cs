@@ -12,8 +12,8 @@ namespace CandidateEval.Models
             ID = (int)dataReader["ID"];
             UserName = (string)dataReader["UserName"];
             Status = (string)dataReader["Status"];
-            FirstName = (string)dataReader["FirstName"];
-            LastName = (string)dataReader["UserName"];
+            FirstName = (string)dataReader["UserName"];
+            LastName = (string)dataReader["LastName"];
             Lat = (double)dataReader["Lat"];
             Lng = (double)dataReader["Lng"];
         }
