@@ -1,4 +1,5 @@
 ﻿using CandidateEval.Models;
+using CandidateEval.ViewModels.Home;
 using System.Web.Mvc;
 
 namespace CandidateEval.Controllers
@@ -7,9 +8,17 @@ namespace CandidateEval.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Supervisees = Supervisee.GetList();
-
             return View();
+        }
+
+        public ActionResult ViewSupervisees()
+        {
+            var viewModel = new ViewSuperviseesViewModel
+            {
+                Supervisees = Supervisee.GetList()
+            };
+
+            return View(viewModel);
         }
     }
 }

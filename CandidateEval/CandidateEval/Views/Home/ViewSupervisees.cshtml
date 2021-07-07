@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Supervisees";
+}
+@model ViewSuperviseesViewModel
+
+<div class="jumbotron">
+    <h1>Supervisees</h1>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Supervisee</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var supervisee in Model.Supervisees)
+            {
+                <tr>
+                    <td>@supervisee.UserName</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
