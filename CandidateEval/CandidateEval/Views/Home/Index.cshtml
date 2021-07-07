@@ -1,26 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Supervisees";
-    List<Supervisee> supervisees = ViewBag.Supervisees;
+    ViewBag.Title = "Employee Home";
 }
 
 <div class="jumbotron">
-    <h1>Supervisees</h1>
+    <h1>Employee Home</h1>
 </div>
+<ul>
+    <li><a  href="@Url.Action("ViewSupervisees", "Home")">Supervisees</a></li>
+    <li>Officers</li>
+</ul>
 
-<table>
-    <thead>
-        <tr>
-            <th>Supervisee</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (Supervisee supervisee in supervisees)
-            {
-                <tr>
-                    <td>@supervisee.UserName</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
