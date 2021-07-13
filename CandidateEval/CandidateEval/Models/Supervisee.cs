@@ -9,58 +9,43 @@ namespace CandidateEval.Models
     {
         private Supervisee(IDataReader dataReader)
         {
-            ID = (int)dataReader["ID"];
-            UserName = (string)dataReader["UserName"];
-            Status = (string)dataReader["Status"];
-            FirstName = (string)dataReader["UserName"];
-            LastName = (string)dataReader["LastName"];
-            Lat = (double)dataReader["Lat"];
-            Lng = (double)dataReader["Lng"];
+            ID = dataReader.GetValue<int>(nameof(ID));
+            UserName = dataReader.GetValue<string>(nameof(UserName));
+            Status = dataReader.GetValue<string>(nameof(Status));
+            FirstName = dataReader.GetValue<string>(nameof(FirstName));
+            LastName = dataReader.GetValue<string>(nameof(LastName));
+            Lat = dataReader.GetValue<double>(nameof(Lat));
+            Lng = dataReader.GetValue<double>(nameof(Lng));
         }
 
-        public int ID { get; set; }
+        public int ID { get; private set; }
         public string UserName { get; set; }
         public string Status { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double Lat { get; set; }
         public double Lng { get; set; }
+        
 
         public static List<Supervisee> GetList()
         {
-            List<Supervisee> supervisees = new List<Supervisee>();
-
-            string cmdText = @"
-                SELECT 
-                    ID,
-                    UserName,
-                    Status,
-                    FirstName,
-                    LastName,
-                    Lat,
-                    Lng
-                FROM
-                    Supervisee";
+            var supervisees = new List<Supervisee>();
             
-            string connectionString = ConfigurationManager.ConnectionStrings["db_connection"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["db_connection"].ConnectionString;
             
             using (var connection = new SqlConnection(connectionString))
             {
-                using (var command = new SqlCommand(cmdText, connection))
+                connection.Open();
+                using (IDbCommand command = connection.CreateStoredProcedure($"{nameof(Supervisee)}_{nameof(GetList)}"))
+                using (IDataReader reader = command.ExecuteReader())
                 {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            Supervisee supervisee = new Supervisee(reader);
-                            supervisees.Add(supervisee);
-                        }
+                        supervisees.Add(new Supervisee(reader));
                     }
                 }
             }
-
+            
             return supervisees;
         }
     }
