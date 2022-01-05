@@ -14,8 +14,6 @@ namespace CandidateEval.Models
             Status = dataReader.GetValue<string>(nameof(Status));
             FirstName = dataReader.GetValue<string>(nameof(FirstName));
             LastName = dataReader.GetValue<string>(nameof(LastName));
-            Lat = dataReader.GetValue<double>(nameof(Lat));
-            Lng = dataReader.GetValue<double>(nameof(Lng));
         }
 
         public int ID { get; private set; }
